@@ -27,7 +27,7 @@ activity_per_day <- activity_data %>% group_by(date) %>% summarize(sum(steps))
 hist(activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](PA1_template_files/figures/firsthist.png)<!-- -->
 
 ```r
 dev.copy(png, "./figures/firsthist.png")
@@ -77,7 +77,7 @@ avg <- avg_data %>% group_by(interval) %>% summarise(mean(steps))
 with(avg, plot(interval, `mean(steps)`, type = "l", main = "Time series plot of average number of steps taken per interval", ylab = "Average steps"))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](PA1_template_files/figures/firstTimeSeries.png)<!-- -->
 
 ```r
 dev.copy(png,"./figures/firstTimeSeries.png")
@@ -147,7 +147,7 @@ full_activity_per_day <- full_activity_data %>% group_by(date) %>% summarize(sum
 hist(full_activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](PA1_template_files/figures/secondHist.png)<!-- -->
 
 ```r
 dev.copy(png, "./figures/secondHist.png")
@@ -208,7 +208,7 @@ finaltask <- full_activity_data %>% group_by(V5, interval) %>% summarise(mean(st
 xyplot( `mean(steps)` ~ interval | V5, data = finaltask, type = "l", layout = c(1,2))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](PA1_template_files/figures/lastTimeSeries.png)<!-- -->
 
 ```r
 dev.copy(png, "./figures/lastTimeSeries.png")
