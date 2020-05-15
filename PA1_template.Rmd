@@ -4,7 +4,10 @@ output:
   html_document:
     keep_md: true
 ---
-
+At first we set the global file directory for the images:
+```{r, Echo = FALSE}
+knitr::opts_chunk$set(fig.path='./Figures/')
+```
 
 ## Loading and preprocessing the data
 First, we read in the data and change the date column to the Date class:
@@ -24,8 +27,7 @@ library(dplyr)
 activity_per_day <- activity_data %>% group_by(date) %>% summarize(sum(steps))
 
 hist(activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
-dev.copy(png, "./figures/firsthist.png")
-dev.off()
+
 ```
 
 ### What is mean and median total number of steps taken per day?
@@ -43,8 +45,7 @@ To identify the average daily activity pattern and create a time series plot we 
 avg_data <- na.omit(activity_data)
 avg <- avg_data %>% group_by(interval) %>% summarise(mean(steps))
 with(avg, plot(interval, `mean(steps)`, type = "l", main = "Time series plot of average number of steps taken per interval", ylab = "Average steps"))
-dev.copy(png,"./figures/firstTimeSeries.png")
-dev.off()
+
 ```
 ### Which 5-minute interval, on average across all the days contains the maximum number of steps ? 
 To answer this question we grab the row, with the max value in the mean(steps)-column of our just calculated values:
@@ -81,8 +82,7 @@ Now we redo the steps of building a histogram and calculating mean and median, w
 full_activity_per_day <- full_activity_data %>% group_by(date) %>% summarize(sum(steps))
 
 hist(full_activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
-dev.copy(png, "./figures/secondHist.png")
-dev.off()
+
 
 mean(full_activity_per_day$`sum(steps)`, na.rm = TRUE)
 median(full_activity_per_day$`sum(steps)`, na.rm = TRUE)
@@ -110,8 +110,7 @@ Using the dplyr package the data is grouped by the factor and the intervals and 
 library(lattice)
 finaltask <- full_activity_data %>% group_by(V5, interval) %>% summarise(mean(steps))
 xyplot( `mean(steps)` ~ interval | V5, data = finaltask, type = "l", layout = c(1,2))
-dev.copy(png, "./figures/lastTimeSeries.png")
-dev.off()
+
 ```
 
 As we can see there is a different pattern, that througut the day on weekends there is a higher average step count after the first peak which is similar to weekdays at around 800. 

@@ -4,7 +4,11 @@ output:
   html_document:
     keep_md: true
 ---
+At first we set the global file directory for the images:
 
+```r
+knitr::opts_chunk$set(fig.path='./Figures/')
+```
 
 ## Loading and preprocessing the data
 First, we read in the data and change the date column to the Date class:
@@ -27,25 +31,7 @@ activity_per_day <- activity_data %>% group_by(date) %>% summarize(sum(steps))
 hist(activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
 ```
 
-![](PA1_template_files/figures/firsthist.png)<!-- -->
-
-```r
-dev.copy(png, "./figures/firsthist.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](./Figures/unnamed-chunk-3-1.png)<!-- -->
 
 ### What is mean and median total number of steps taken per day?
 The mean and median number is calculated through the matching functions and the already grouped data, while ignoring the NA-values:
@@ -77,25 +63,7 @@ avg <- avg_data %>% group_by(interval) %>% summarise(mean(steps))
 with(avg, plot(interval, `mean(steps)`, type = "l", main = "Time series plot of average number of steps taken per interval", ylab = "Average steps"))
 ```
 
-![](PA1_template_files/figures/firstTimeSeries.png)<!-- -->
-
-```r
-dev.copy(png,"./figures/firstTimeSeries.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](./Figures/unnamed-chunk-5-1.png)<!-- -->
 ### Which 5-minute interval, on average across all the days contains the maximum number of steps ? 
 To answer this question we grab the row, with the max value in the mean(steps)-column of our just calculated values:
 
@@ -147,25 +115,7 @@ full_activity_per_day <- full_activity_data %>% group_by(date) %>% summarize(sum
 hist(full_activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
 ```
 
-![](PA1_template_files/figures/secondHist.png)<!-- -->
-
-```r
-dev.copy(png, "./figures/secondHist.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](./Figures/unnamed-chunk-9-1.png)<!-- -->
 
 ```r
 mean(full_activity_per_day$`sum(steps)`, na.rm = TRUE)
@@ -208,25 +158,7 @@ finaltask <- full_activity_data %>% group_by(V5, interval) %>% summarise(mean(st
 xyplot( `mean(steps)` ~ interval | V5, data = finaltask, type = "l", layout = c(1,2))
 ```
 
-![](PA1_template_files/figures/lastTimeSeries.png)<!-- -->
-
-```r
-dev.copy(png, "./figures/lastTimeSeries.png")
-```
-
-```
-## png 
-##   3
-```
-
-```r
-dev.off()
-```
-
-```
-## png 
-##   2
-```
+![](./Figures/unnamed-chunk-11-1.png)<!-- -->
 
 As we can see there is a different pattern, that througut the day on weekends there is a higher average step count after the first peak which is similar to weekdays at around 800. 
 
