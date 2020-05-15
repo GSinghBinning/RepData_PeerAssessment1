@@ -19,11 +19,12 @@ Now we calcluate the total number of steps taken per day, by using the dplyr
 package and grouping the table by the day column and finally summing up the steps per day. This data is then used to display it through a histogram: 
 
 ```{r, Echo = TRUE, message=FALSE}
+
 library(dplyr)
 activity_per_day <- activity_data %>% group_by(date) %>% summarize(sum(steps))
 
 hist(activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
-dev.copy(png, "firsthist.png")
+dev.copy(png, "./figures/firsthist.png")
 dev.off()
 ```
 
@@ -42,7 +43,7 @@ To identify the average daily activity pattern and create a time series plot we 
 avg_data <- na.omit(activity_data)
 avg <- avg_data %>% group_by(interval) %>% summarise(mean(steps))
 with(avg, plot(interval, `mean(steps)`, type = "l", main = "Time series plot of average number of steps taken per interval", ylab = "Average steps"))
-dev.copy(png,"firstTimeSeries.png")
+dev.copy(png,"./figures/firstTimeSeries.png")
 dev.off()
 ```
 ### Which 5-minute interval, on average across all the days contains the maximum number of steps ? 
@@ -80,7 +81,7 @@ Now we redo the steps of building a histogram and calculating mean and median, w
 full_activity_per_day <- full_activity_data %>% group_by(date) %>% summarize(sum(steps))
 
 hist(full_activity_per_day$`sum(steps)`, main =" Total number of steps taken per day", xlab = "Sum of steps")
-dev.copy(png, "secondHist.png")
+dev.copy(png, "./figures/secondHist.png")
 dev.off()
 
 mean(full_activity_per_day$`sum(steps)`, na.rm = TRUE)
@@ -109,8 +110,10 @@ Using the dplyr package the data is grouped by the factor and the intervals and 
 library(lattice)
 finaltask <- full_activity_data %>% group_by(V5, interval) %>% summarise(mean(steps))
 xyplot( `mean(steps)` ~ interval | V5, data = finaltask, type = "l", layout = c(1,2))
-dev.copy(png, "lastTimeSeries.png")
+dev.copy(png, "./figures/lastTimeSeries.png")
 dev.off()
 ```
 
 As we can see there is a different pattern, that througut the day on weekends there is a higher average step count after the first peak which is similar to weekdays at around 800. 
+
+

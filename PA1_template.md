@@ -30,7 +30,7 @@ hist(activity_per_day$`sum(steps)`, main =" Total number of steps taken per day"
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ```r
-dev.copy(png, "firsthist.png")
+dev.copy(png, "./figures/firsthist.png")
 ```
 
 ```
@@ -80,7 +80,7 @@ with(avg, plot(interval, `mean(steps)`, type = "l", main = "Time series plot of 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 ```r
-dev.copy(png,"firstTimeSeries.png")
+dev.copy(png,"./figures/firstTimeSeries.png")
 ```
 
 ```
@@ -150,7 +150,7 @@ hist(full_activity_per_day$`sum(steps)`, main =" Total number of steps taken per
 ![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 ```r
-dev.copy(png, "secondHist.png")
+dev.copy(png, "./figures/secondHist.png")
 ```
 
 ```
@@ -211,7 +211,7 @@ xyplot( `mean(steps)` ~ interval | V5, data = finaltask, type = "l", layout = c(
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 ```r
-dev.copy(png, "lastTimeSeries.png")
+dev.copy(png, "./figures/lastTimeSeries.png")
 ```
 
 ```
@@ -229,3 +229,5 @@ dev.off()
 ```
 
 As we can see there is a different pattern, that througut the day on weekends there is a higher average step count after the first peak which is similar to weekdays at around 800. 
+
+
